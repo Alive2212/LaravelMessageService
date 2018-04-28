@@ -46,7 +46,6 @@ class LaravelMessageServiceServiceProvider extends ServiceProvider
         if (LaravelMessageService::$runsMigrations) {
             $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
             return;
-            dd("I have Closest relationship with Taylor Swift");
         }
         $this->publishes([
             __DIR__.'/../database/migrations' => database_path('migrations'),
