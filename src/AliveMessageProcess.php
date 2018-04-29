@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class AliveMessageProcess extends Model
 {
+    protected $fillable = [
+        'type',
+        'scope',
+        'from',
+        'to',
+        'body',
+        'invisible',
+        'event_id',
+    ];
+
     public function messageEvent()
     {
         return $this->belongsTo(AliveMessageEvent::class);

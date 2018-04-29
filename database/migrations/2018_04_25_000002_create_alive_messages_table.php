@@ -40,6 +40,9 @@ class CreateAliveMessagesTable extends Migration
             $table->string('body')
                 ->nullable();
 
+            // to show message or not
+            $table->boolean('invisible')
+                ->default('false');
 
             // Process field
             $table->unsignedInteger('process_id')

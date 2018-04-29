@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class AliveMessageEvent extends Model
 {
+    protected $fillable = [
+        'model',
+        'type',
+        'rules',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

@@ -19,11 +19,14 @@ class LaravelMessageServiceServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
 
+            // register jobs
+            $this->registerJobs();
+
             // register migrations
             $this->registerMigrations();
 
             // register all commands into 'Console' folder
-            $this->registerCammands();
+            $this->registerCommands();
         }
     }
 
@@ -44,32 +47,31 @@ class LaravelMessageServiceServiceProvider extends ServiceProvider
     protected function registerMigrations()
     {
         if (LaravelMessageService::$runsMigrations) {
-            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+            $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
             return;
         }
         $this->publishes([
-            __DIR__.'/../database/migrations' => database_path('migrations'),
-        ], 'passport-migrations');
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
+        ], 'message-service');
     }
 
     /**
      * Register a database migration path.
      *
-     * @param  array|string  $paths
+     * @param  array|string $paths
      * @return void
      */
     protected function loadMigrationsFrom($paths)
     {
         $this->app->afterResolving('migrator', function ($migrator) use ($paths) {
-            foreach ((array) $paths as $path) {
+            foreach ((array)$paths as $path) {
                 $migrator->path($path);
             }
         });
     }
 
-    public function registerCammands()
+    public function registerCommands()
     {
-// load all Console Class in Console folder
         $consoles = scandir(__DIR__ . '/Console');
         $commands = [];
         unset($consoles[0], $consoles[1]);
@@ -78,5 +80,15 @@ class LaravelMessageServiceServiceProvider extends ServiceProvider
             array_push($commands, $dir);
         }
         $this->commands($commands);
+    }
+
+    /**
+     *
+     */
+    public function registerJobs()
+    {
+        $this->publishes([
+            __DIR__ . '/Jobs' => app_path('Jobs'),
+        ], "message-service");
     }
 }

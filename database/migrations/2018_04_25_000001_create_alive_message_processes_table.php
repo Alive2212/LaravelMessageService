@@ -16,15 +16,22 @@ class CreateAliveMessageProcessesTable extends Migration
         Schema::create('alive_message_processes', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->enum('type', ['sms', 'notification', 'store'])
+            $table->enum('type', ['Sms', 'Notification', 'Social','Email'])
                 ->nullable();
 
-            $table->text('form')
+            $table->unsignedInteger('scope')
+                ->nullable();
+
+            $table->text('from')
                 ->nullable();
 
             $table->text('to');
 
             $table->text('body');
+
+            // to show message or not
+            $table->boolean('invisible')
+                ->default('false');
 
             // Event field
             $table->unsignedInteger('event_id')

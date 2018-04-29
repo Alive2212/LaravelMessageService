@@ -12,6 +12,9 @@ namespace Alive2212\LaravelMessageService;
 class LaravelMessageService
 {
 
+    /**
+     * @var bool
+     */
     static $runsMigrations = true;
 
     /**
