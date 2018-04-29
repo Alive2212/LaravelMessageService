@@ -9,8 +9,11 @@
 namespace Alive2212\LaravelMessageService;
 
 
+use App\Jobs\MessageServiceEmailJob;
+use App\Jobs\MessageServiceNotificationJob;
 use App\Jobs\MessageServiceScopeJob;
 use App\Jobs\MessageServiceSmsJob;
+use App\Jobs\MessageServiceSocialJob;
 use Illuminate\Queue\Jobs\Job;
 
 class MessageService
@@ -50,12 +53,19 @@ class MessageService
                             case "Sms":
                                 dispatch(new MessageServiceSmsJob($process,$currentModelParams));
                                 break;
+
                             case "Notification":
-
+                                dispatch(new MessageServiceNotificationJob($process, $currentModelParams));
                                 break;
-                            case "Store":
 
+                            case "Social":
+                                dispatch(new MessageServiceSocialJob($process, $currentModelParams));
                                 break;
+
+                            case "Email":
+                                dispatch(new MessageServiceEmailJob($process, $currentModelParams));
+                                break;
+
                             default:
                                 dispatch(new MessageServiceScopeJob($process,$currentModelParams));
                         }
