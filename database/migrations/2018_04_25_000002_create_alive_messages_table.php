@@ -18,7 +18,7 @@ class CreateAliveMessagesTable extends Migration
 
             // From field
             $table->unsignedInteger('from')
-                ->nullabe()
+                ->nullable()
                 ->index();
 
             $table->foreign('from')

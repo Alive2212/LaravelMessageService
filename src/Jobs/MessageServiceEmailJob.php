@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-class MessageServiceSocialJob extends MessageServiceBaseJob
+class MessageServiceEmailJob extends MessageServiceBaseJob
 {
     /**
      * Execute the job.
