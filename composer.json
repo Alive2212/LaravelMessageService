@@ -1,5 +1,5 @@
 {
-    "name": "Alive2212/LaravelMessageService",
+    "name": "alive2212/laravel-message-service",
     "type": "library",
     "description": "This is a laravel package for handle all message of system (SMS, PushNotif, Store to DB)",
     "keywords": [
@@ -27,11 +27,13 @@
     "autoload": {
         "psr-4": {
             "Alive2212\\LaravelMessageService\\": "src",
+            "Alive2212\\LaravelMessageServiceTest\\": "test"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Alive2212\\LaravelMessageService\\": "tests"
+            "Alive2212\\LaravelMessageService\\": "src",
+            "Alive2212\\LaravelMessageServiceTest\\": "test"
         }
     },
     "scripts": {
