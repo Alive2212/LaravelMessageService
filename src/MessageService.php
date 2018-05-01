@@ -14,15 +14,11 @@ use App\Jobs\MessageServiceNotificationJob;
 use App\Jobs\MessageServiceScopeJob;
 use App\Jobs\MessageServiceSmsJob;
 use App\Jobs\MessageServiceSocialJob;
-use Illuminate\Queue\Jobs\Job;
 
 class MessageService
 {
     public function handle($model, $eventType)
     {
-//        $model = new AliveMessage();
-//        $model->getAttributes();
-
         // get model class name
         $modelClassName = get_class($model);
 
