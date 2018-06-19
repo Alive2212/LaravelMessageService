@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace Alive2212\LaravelMessageService\Jobs;
 
 use Alive2212\LaravelMessageService\AliveMessage;
 use Illuminate\Bus\Queueable;
@@ -85,13 +85,10 @@ class MessageServiceBaseJob implements ShouldQueue
 
     /**
      * @param array $processParams
-     * @param array $modelParams
+     * @param array $modelParam
      */
-    public function initValues(array $processParams, array $modelParams)
+    public function initValues(array $processParams, array $modelParam)
     {
-        // get model as one
-        $modelParam = $modelParams[0];
-
         // get process id
         $this->processId = $processParams['id'];
 
@@ -140,7 +137,7 @@ class MessageServiceBaseJob implements ShouldQueue
         // store message to Alive Message model
         $message = new AliveMessage();
         $message->create([
-            'to' => $this->to,
+            'to' => $this->to == '' ? null : $this->to,
             'from' => $this->from,
             'body' => $this->body,
             'invisible' => $this->invisible,

@@ -29,6 +29,7 @@ class CreateAliveMessagesTable extends Migration
 
             // To field
             $table->unsignedInteger('to')
+                ->nullable()
                 ->index();
 
             $table->foreign('to')
@@ -42,7 +43,7 @@ class CreateAliveMessagesTable extends Migration
 
             // to show message or not
             $table->boolean('invisible')
-                ->default('false');
+                ->default(false);
 
             // Process field
             $table->unsignedInteger('process_id')

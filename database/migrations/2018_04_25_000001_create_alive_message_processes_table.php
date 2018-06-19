@@ -25,13 +25,16 @@ class CreateAliveMessageProcessesTable extends Migration
             $table->text('from')
                 ->nullable();
 
-            $table->text('to');
+            $table->text('to')
+                ->nullable();
 
             $table->text('body');
 
             // to show message or not
             $table->boolean('invisible')
-                ->default('false');
+                ->dafault(false);
+
+            $table->text('launch_time'); // it can a field of model if string and if data time
 
             // Event field
             $table->unsignedInteger('event_id')
